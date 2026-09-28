@@ -1,12 +1,14 @@
-function Card({ title, description, image }) {
+function IdentityCard({ student }) {
   return (
-    <div className="max-w-sm bg-white shadow-md rounded-lg overflow-hidden m-4">
-      <img src={image} alt={title} className="w-full h-40 object-cover" />
-      <div className="p-4">
-        <h2 className="text-xl font-semibold mb-2">{title}</h2>
-        <p className="text-gray-600">{description}</p>
-      </div>
+    <div className="max-w-sm bg-white border rounded-lg shadow-md p-4 m-2 text-left">
+      <h2 className="text-xl font-bold mb-1">Fullname: {student.fullname}</h2>
+      <p className="text-gray-700"><strong>Student Number:</strong> {student.studentNumber}</p>
+      <p className="text-gray-700"><strong>Course:</strong> {student.course}</p>
+      <p className="text-gray-700"><strong>Course Description:</strong> {student.courseDescription}</p>
+      <p className="text-gray-700"><strong>Year Level:</strong> {student.yearLevel}</p>
+      <p className="text-gray-700"><strong>Sex:</strong> {student.sex}</p>
     </div>
   );
 }
-export default Card;
+
+export default IdentityCard;

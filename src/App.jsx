@@ -1,24 +1,28 @@
-import Card from "./components/identityCard";
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import initialStudents from "./data/students.json";
+import Navbar from "./components/Navbar";
+import StudentList from "./pages/StudentList";
+import AddStudent from "./pages/AddStudent";
 
 function App() {
+  const [students, setStudents] = useState(initialStudents);
+
+  const handleAddStudent = (newStudent) => {
+    setStudents((prev) => [...prev, { ...newStudent, id: Date.now() }]);
+  };
+
   return (
-    <div className="flex flex-wrap justify-center">
-      <Card
-        title="React Basics"
-        description="Learn how to create components and props."
-        image="https://picsum.photos/300/200"
-      />
-      <Card
-        title="Reusable Components"
-        description="Build flexible components for scalability."
-        image="https://picsum.photos/300/201"
-      />
-      <Card
-        title="Modern UI Development"
-        description="Combine React with Tailwind CSS for fast design."
-        image="https://picsum.photos/300/202"
-      />
-    </div>
+    <Router>
+      {/* This renders the navigation bar at the top */}
+      <Navbar />
+
+      <Routes>
+        <Route path="/" element={<StudentList students={students} />} />
+        <Route path="/students" element={<StudentList students={students} />} />
+        <Route path="/add-student" element={<AddStudent onAddStudent={handleAddStudent} />} />
+      </Routes>
+    </Router>
   );
 }
 
